@@ -15,8 +15,8 @@ describe("app", () => {
       describe("with non-empty content", () => {
         describe("with JavaScript code in personalWebsiteURL", () => {
           test("responds with error", async (done) => {
-            const response = await request(app)
-              .post("/message")
+            const response = await agent
+              .post("/messages")
               .send(
                 "content=testwithkack&personalWebsiteURL=javascript:alert('hack tentative');"
               );
@@ -28,7 +28,7 @@ describe("app", () => {
         describe("with HTTP URL in personalWebsiteURL", () => {
           test("responds with success", async (done) => {
             const response = await agent
-              .post("/message")
+              .post("/messages")
               .send("content=test&personalWebsiteURL=https://google.fr");
             expect(response.statusCode).toBe(201);
             done();

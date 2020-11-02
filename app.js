@@ -44,8 +44,10 @@ app
 app
   .use((req, res, next) => {
     if (req.isAuthenticated()) {
+      console.log("auth ok");
       return next();
     }
+    console.log("probleme auth");
     return res.sendStatus(401);
   })
   .get("/me", (req, res) => res.send(req.user))
