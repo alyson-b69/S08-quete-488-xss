@@ -1,6 +1,6 @@
 const request = require("supertest");
 
-const app = require("./app");
+const app = require("./index");
 const agent = request.agent(app);
 
 describe("app", () => {

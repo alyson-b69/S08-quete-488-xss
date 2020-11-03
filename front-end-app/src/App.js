@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import qs from 'qs';
-import styled from 'styled-components';
+import React, { Component, Fragment } from "react";
+import qs from "qs";
+import styled from "styled-components";
 import {
   Anchor,
   Box,
@@ -12,14 +12,14 @@ import {
   Layer,
   Paragraph,
   Text,
-} from 'grommet';
+} from "grommet";
 
 const theme = {
   global: {
     font: {
-      family: 'Roboto',
-      size: '14px',
-      height: '20px',
+      family: "Roboto",
+      size: "14px",
+      height: "20px",
     },
   },
 };
@@ -39,9 +39,9 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     messages: [],
-    postMessageFormErrors: '',
+    postMessageFormErrors: "",
     shouldShowLoginDialog: false,
-    username: '',
+    username: "",
   };
 
   async componentDidMount() {
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   fetchUsername = async () => {
-    const response = await fetch('/me');
+    const response = await fetch("/me");
     if (response.ok) {
       const { username } = await response.json();
       this.setState({ isLoggedIn: true, username });
@@ -58,7 +58,7 @@ class App extends Component {
   };
 
   fetchMessages = async () => {
-    const response = await fetch('/messages');
+    const response = await fetch("/messages");
     const { messages } = await response.json();
     this.setState({ messages });
   };
@@ -72,10 +72,10 @@ class App extends Component {
   };
 
   logIn = async ({ value }) => {
-    const response = await fetch('/login', {
-      method: 'POST',
+    const response = await fetch("/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
       },
       body: qs.stringify(value),
     });
@@ -90,16 +90,16 @@ class App extends Component {
   };
 
   postMessage = async ({ value }) => {
-    const response = await fetch('/messages', {
-      method: 'POST',
+    const response = await fetch("/messages", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
       },
       body: qs.stringify(value),
     });
     if (response.ok) {
       const { messages } = await response.json();
-      this.setState({ messages, postMessageFormErrors: '' });
+      this.setState({ messages, postMessageFormErrors: "" });
     } else {
       const { errors } = await response.json();
       this.setState({ postMessageFormErrors: errors });
@@ -151,10 +151,10 @@ class App extends Component {
 
     return (
       <Form onSubmit={this.postMessage}>
-        {this.renderFormFieldBox('content', 'Content:', errors.content)}
+        {this.renderFormFieldBox("content", "Content:", errors.content)}
         {this.renderFormFieldBox(
-          'personalWebsiteURL',
-          'Your personal website URL:',
+          "personalWebsiteURL",
+          "Your personal website URL:",
           errors.personalWebsiteURL
         )}
         <Button type="submit" primary label="Submit" margin="medium" />
@@ -169,10 +169,10 @@ class App extends Component {
           ({ id, username, content, personalWebsiteURL }) => (
             <li key={id}>
               <Box
-                border={{ side: 'top', color: 'brand', size: 'medium' }}
-                margin={{ top: 'medium' }}
+                border={{ side: "top", color: "brand", size: "medium" }}
+                margin={{ top: "medium" }}
               >
-                <Paragraph size="large" margin={{ bottom: 'small' }}>
+                <Paragraph size="large" margin={{ bottom: "small" }}>
                   {content}
                 </Paragraph>
                 <Text weight="bold">{username}</Text>
@@ -190,12 +190,12 @@ class App extends Component {
   renderPostMessageBox() {
     return (
       <Box
-        border={{ color: 'brand', size: 'medium' }}
+        border={{ color: "brand", size: "medium" }}
         round={true}
         pad="medium"
-        margin={{ top: 'large' }}
+        margin={{ top: "large" }}
       >
-        <Heading level="3" margin={'medium'}>
+        <Heading level="3" margin={"medium"}>
           Post a message
         </Heading>
         {this.state.isLoggedIn

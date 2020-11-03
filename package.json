@@ -2,7 +2,7 @@
   "name": "message-board",
   "version": "0.1.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "postinstall": "cd front-end-app && npm install",
     "start": "node .",
@@ -22,11 +22,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "jest": "^26.6.1",
-    "nodemon": "^1.18.10",
-    "superagent": "^6.1.0",
-    "supertest": "^6.0.0"
+    "nodemon": "^1.18.10"
   }
 }
